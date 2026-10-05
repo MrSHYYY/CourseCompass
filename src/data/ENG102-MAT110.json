@@ -373,5 +373,13 @@
     "type": "Elective",
     "hp": [],
     "sp": []
+  },
+  {
+    "code": "CSE400",
+    "title": null,
+    "semester_row": 12,
+    "type": "Thesis",
+    "hp": [],
+    "sp": []
   }
 ]

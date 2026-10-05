@@ -54,9 +54,9 @@ function createDefaultState(curriculum) {
 function cloneState(state) {
   return {
     ...state,
-    completedCourses: [...state.completedCourses],
-    semesters: state.semesters.map(semester => ({ ...semester, courses: semester.courses.map(course => ({ ...course })) })),
-    unplaced: state.unplaced.map(course => ({ ...course })),
+    completedCourses: [...(state.completedCourses || [])],
+    semesters: (state.semesters || []).map(semester => ({ ...semester, courses: (semester.courses || []).map(course => ({ ...course })) })),
+    unplaced: (state.unplaced || []).map(course => ({ ...course })),
   };
 }
 
@@ -77,9 +77,35 @@ function restorePlannerState(user, curriculum) {
   try {
     let state;
     if (user.plannerState != null) {
-      const validation = validatePlannerState(user.plannerState, curriculum, { allowUnplaced: true, checkSchedule: false });
-      if (!validation.ok) return { ok: false, error: validation.errors[0], warnings: validation.errors };
+      if (typeof user.plannerState !== "object" || !Array.isArray(user.plannerState.semesters)) {
+        return { ok: false, error: { code: "INVALID_PLANNER_STATE", message: "Planner state has an unsupported schema, stream, or semester list." }, warnings };
+      }
       state = cloneState(user.plannerState);
+      const existingOccurrences = new Set();
+      for (const semester of state.semesters) {
+        for (const course of semester?.courses || []) {
+          if (course?.occurrenceId) existingOccurrences.add(course.occurrenceId);
+        }
+      }
+      for (const course of state.unplaced || []) {
+        if (course?.occurrenceId) existingOccurrences.add(course.occurrenceId);
+      }
+      const missing = curriculum.occurrences.filter(course => !existingOccurrences.has(course.occurrenceId));
+      if (missing.length) {
+        for (const course of missing) {
+          const semesterIndex = state.semesters.findIndex(s => s?.originalRow === course.semester_row);
+          const target = semesterIndex >= 0 ? state.semesters[semesterIndex] : null;
+          const isFuture = semesterIndex >= ((state.currentSemester || 1) - 1);
+          const hasRoom = target && Array.isArray(target.courses) && target.courses.length < 5;
+          const matchTarc = target && !!target.isTarc === !!course.is_tarc;
+          if (target && isFuture && hasRoom && matchTarc) {
+            target.courses.push(createInstance(course));
+          } else {
+            if (!Array.isArray(state.unplaced)) state.unplaced = [];
+            state.unplaced.push(createInstance(course));
+          }
+        }
+      }
     } else {
       state = createDefaultState(curriculum);
       state.currentSemester = user.currentSemester ?? 1;
