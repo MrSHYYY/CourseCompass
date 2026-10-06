@@ -1,6 +1,7 @@
 [
   {
     "code": "CSE110",
+    "display_code": "CSE110L",
     "title": "Introduction to Computer Programming",
     "semester_row": 1,
     "type": "Program Core",
@@ -25,6 +26,7 @@
   },
   {
     "code": "PHY111",
+    "display_code": "PHY111L",
     "title": "Physics I",
     "semester_row": 1,
     "type": "GenEd",
@@ -34,6 +36,7 @@
 
   {
     "code": "CSE111",
+    "display_code": "CSE111L",
     "title": "Structured Programming",
     "semester_row": 2,
     "type": "Program Core",
@@ -58,6 +61,7 @@
   },
   {
     "code": "PHY112",
+    "display_code": "PHY112L",
     "title": "Physics I Lab",
     "semester_row": 2,
     "type": "School Core",
@@ -106,6 +110,7 @@
 
   {
     "code": "CSE220",
+    "display_code": "CSE220L",
     "title": "Data Structures",
     "semester_row": 4,
     "type": "Program Core",
@@ -114,6 +119,7 @@
   },
   {
     "code": "MAT120",
+    "display_code": "MAT120L",
     "title": "Calculus II",
     "semester_row": 4,
     "type": "School Core",
@@ -122,6 +128,7 @@
   },
   {
     "code": "CSE250",
+    "display_code": "CSE250L",
     "title": "Circuits & Electronics",
     "semester_row": 4,
     "type": "Program Core",
@@ -140,6 +147,7 @@
 
   {
     "code": "CSE221",
+    "display_code": "CSE221L",
     "title": "Algorithms",
     "semester_row": 5,
     "type": "Program Core",
@@ -156,6 +164,7 @@
   },
   {
     "code": "CSE251",
+    "display_code": "CSE251L",
     "title": "Electronic Devices & Circuits",
     "semester_row": 5,
     "type": "Program Core",
@@ -174,6 +183,7 @@
 
   {
     "code": "CSE321",
+    "display_code": "CSE321L",
     "title": "Database Systems",
     "semester_row": 6,
     "type": "Program Core",
@@ -182,6 +192,7 @@
   },
   {
     "code": "CSE330",
+    "display_code": "CSE330L",
     "title": "Operating Systems",
     "semester_row": 6,
     "type": "Program Core",
@@ -190,6 +201,7 @@
   },
   {
     "code": "CSE260",
+    "display_code": "CSE260L",
     "title": "Digital Logic Design",
     "semester_row": 6,
     "type": "Program Core",
@@ -208,6 +220,7 @@
 
   {
     "code": "CSE370",
+    "display_code": "CSE370L",
     "title": "Software Engineering",
     "semester_row": 7,
     "type": "Program Core",
@@ -232,6 +245,7 @@
   },
   {
     "code": "CSE350",
+    "display_code": "CSE350L",
     "title": "Computer Architecture",
     "semester_row": 7,
     "type": "Program Core",
@@ -240,6 +254,7 @@
   },
   {
     "code": "CSE422",
+    "display_code": "CSE422L",
     "title": "Computer Networks",
     "semester_row": 8,
     "type": "Program Core",
@@ -256,6 +271,7 @@
   },
   {
     "code": "CSE341",
+    "display_code": "CSE341L",
     "title": "Theory of Computation",
     "semester_row": 8,
     "type": "Program Core",
@@ -280,6 +296,7 @@
   },
   {
     "code": "CSE360",
+    "display_code": "CSE360L",
     "title": "Compiler Design",
     "semester_row": 9,
     "type": "Program Core",
@@ -288,6 +305,7 @@
   },
   {
     "code": "CSE460",
+    "display_code": "CSE460L",
     "title": "Machine Learning",
     "semester_row": 9,
     "type": "Program Core",
@@ -306,6 +324,7 @@
 
   {
     "code": "CSE420",
+    "display_code": "CSE420L",
     "title": "Artificial Intelligence",
     "semester_row": 10,
     "type": "Program Core",
@@ -314,6 +333,7 @@
   },
   {
     "code": "CSE421",
+    "display_code": "CSE421L",
     "title": "Operating Systems II",
     "semester_row": 10,
     "type": "Program Core",
@@ -322,6 +342,7 @@
   },
   {
     "code": "CSE423",
+    "display_code": "CSE423L",
     "title": "Numerical Analysis",
     "semester_row": 10,
     "type": "Program Core",
@@ -339,6 +360,7 @@
   },
   {
     "code": "CSE471",
+    "display_code": "CSE471L",
     "title": "Internship/Project II",
     "semester_row": 11,
     "type": "Program Core",
@@ -347,6 +369,7 @@
   },
   {
     "code": "CSE461",
+    "display_code": "CSE461L",
     "title": "Advanced Machine Learning",
     "semester_row": 11,
     "type": "Program Core",

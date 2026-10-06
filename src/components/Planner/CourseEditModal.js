@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { displayCourseCode } from "../../engine/labs.mjs";
 
 const GROUP_ORDER = [
   "COD",
@@ -130,7 +131,7 @@ export default function CourseEditModal({
                     >
                       <span className="flex w-full items-center justify-between gap-2">
                         <span>
-                          <span className="font-semibold">{course.code}</span>
+                          <span className="font-semibold">{course.displayCode || displayCourseCode(course.code)}</span>
                           {course.hp && course.hp.length > 0 && course.hp[0] !== "" && (
                             <span className="ml-2 text-xs font-semibold text-red-400">
                               HP: {course.hp.join(", ")}
