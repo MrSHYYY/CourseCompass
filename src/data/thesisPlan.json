@@ -1,24 +1,24 @@
 [
   {
-    "semester_row": 9,
+    "semester_row": 10,
     "code": "CSE399",
     "title": "Pre-Thesis I",
     "isThesis": true
   },
   {
-    "semester_row": 10,
+    "semester_row": 11,
     "code": "CSE499A",
     "title": "Pre-Thesis II",
     "isThesis": true
   },
   {
-    "semester_row": 11,
+    "semester_row": 12,
     "code": "CSE400",
     "title": "Final Thesis",
     "isThesis": true
   },
   {
-    "semester_row": 12,
+    "semester_row": 13,
     "code": "CSE400D",
     "title": "CSE400 (If Deferred)",
     "isThesis": true
