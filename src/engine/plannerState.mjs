@@ -1,4 +1,5 @@
 import { validatePlannerState } from "./validator.mjs";
+import { displayCourseCode, isLabCourse } from "./labs.mjs";
 
 function buildCurriculum(flat, stream = "test") {
   const counts = new Map();
@@ -13,6 +14,8 @@ function buildCurriculum(flat, stream = "test") {
     counts.set(key, ordinal);
     const occurrence = Object.freeze({
       ...course,
+      isLab: course.is_lab || isLabCourse(course.code),
+      displayCode: course.display_code || displayCourseCode(course.code),
       hp: Object.freeze((course.hp || []).filter(code => typeof code === "string" && code.trim()).map(code => code.trim())),
       sp: Object.freeze((course.sp || []).filter(code => typeof code === "string" && code.trim()).map(code => code.trim())),
       occurrenceId: `${key}:${ordinal}`,
