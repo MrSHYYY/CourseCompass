@@ -1,8 +1,7 @@
 import React from "react";
-import { displayCourseCode } from "../../engine/labs.mjs";
 
 export default function CourseBox({ course, isLocked, isRepeat, onReplace, onContextMenu, hideCompletedLabel }) {
-  const name = course.displayName || course.displayCode || displayCourseCode(course.code);
+  const name = course.displayName || course.code;
   const clickable = !isLocked && !isRepeat;
   return (
     <button

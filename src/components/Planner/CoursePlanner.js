@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getSemesterStatus } from "../../engine/plannerState.mjs";
-import { displayCourseCode } from "../../engine/labs.mjs";
 import { getThesisPlan } from "../../engine/thesisPlan.mjs";
 import usePlanner from "../../engine/usePlanner";
 import { termNumber, latestRepeatIds } from "../../engine/gradesheet.mjs";
@@ -65,11 +64,7 @@ export default function CoursePlanner({ user, setUser, curriculum, sidebarOpen, 
     courses: semester.courses.map((instance) => ({
       ...curriculum.byId.get(instance.occurrenceId),
       ...instance,
-      displayCode: curriculum.byId.get(instance.occurrenceId)?.displayCode || displayCourseCode(curriculum.byId.get(instance.occurrenceId)?.code),
-      displayName: state.courseLabels?.[instance.instanceId]
-        || (curriculum.byId.get(instance.occurrenceId)?.code === "COD"
-          ? importedRecords.find(record => record.occurrenceId === instance.occurrenceId)?.code
-          : curriculum.byId.get(instance.occurrenceId)?.displayCode || displayCourseCode(curriculum.byId.get(instance.occurrenceId)?.code)),
+      displayName: state.courseLabels?.[instance.instanceId] || (curriculum.byId.get(instance.occurrenceId)?.code === "COD" ? importedRecords.find(record => record.occurrenceId === instance.occurrenceId)?.code : undefined),
       isRepeat: repeatOccurrences.has(instance.occurrenceId),
       completed: curriculum.byId.get(instance.occurrenceId)?.code !== "COD" && state.completedCourses.includes(curriculum.byId.get(instance.occurrenceId)?.code),
     })),
