@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import thesisPlan from "../../data/thesisPlan.json";
 import { getSemesterStatus } from "../../engine/plannerState.mjs";
+import { getThesisPlan } from "../../engine/thesisPlan.mjs";
 import usePlanner from "../../engine/usePlanner";
 import { termNumber, latestRepeatIds } from "../../engine/gradesheet.mjs";
 import { advanceTerm, formatTermLabel } from "../../engine/academicTerm";
@@ -69,7 +69,7 @@ export default function CoursePlanner({ user, setUser, curriculum, sidebarOpen, 
       completed: curriculum.byId.get(instance.occurrenceId)?.code !== "COD" && state.completedCourses.includes(curriculum.byId.get(instance.occurrenceId)?.code),
     })),
     repeats: [...repeatCourses, ...earlierAttempts].filter((entry) => entry.semesterId === semester.id),
-    thesis: thesisPlan.find((item) => item.semester_row === semester.originalRow) || null,
+    thesis: getThesisPlan(state, curriculum).find((item) => item.index === index) || null,
     termLabel: formatTermLabel(advanceTerm(user.startTerm, index)),
   })), [state, curriculum, user.startTerm, repeatCourses, earlierAttempts, repeatOccurrences, importedRecords]);
 
