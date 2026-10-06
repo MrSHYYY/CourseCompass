@@ -88,6 +88,20 @@ function describeChanges(before, after, curriculum) {
   return changes;
 }
 
+function trimTrailingEmptySemesters(state, curriculum) {
+  const curriculumLength = Math.max(0, ...curriculum.occurrences.map(course => course.semester_row));
+  const finalThesisIndex = state.semesters.findIndex(semester =>
+    semester.courses.some(course => curriculum.byId.get(course.occurrenceId)?.code === "CSE400")
+  );
+  const thesisLength = finalThesisIndex >= curriculumLength ? finalThesisIndex + 2 : 0;
+  const keepLength = Math.max(state.currentSemester, curriculumLength, thesisLength);
+  while (state.semesters.length > keepLength) {
+    const last = state.semesters[state.semesters.length - 1];
+    if (last.isTarc || last.courses.length > 0) break;
+    state.semesters.pop();
+  }
+}
+
 function applyAction(state, action, curriculum) {
   const input = validatePlannerState(state, curriculum, { allowUnplaced: true, checkSchedule: false });
   if (!input.ok) return { ok: false, state, error: input.errors[0], warnings: input.errors };
@@ -156,6 +170,7 @@ function applyAction(state, action, curriculum) {
         planningError("UNKNOWN_ACTION", "This planner action is not supported.");
     }
     if (action.type !== "COMPLETE_SEMESTER") scheduleFuture(next, curriculum, { notBefore, pinned });
+    trimTrailingEmptySemesters(next, curriculum);
     next.personalized = true;
     const validation = validatePlannerState(next, curriculum, { previousState: state });
     if (!validation.ok) return { ok: false, state, error: validation.errors[0], warnings: validation.errors };
